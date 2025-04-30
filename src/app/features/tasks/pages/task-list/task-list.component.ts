@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { TasksStore } from "../../stores/tasks.store";
 
 @Component({
@@ -7,9 +8,13 @@ import { TasksStore } from "../../stores/tasks.store";
 	standalone: false,
 })
 export class TaskListComponent implements OnInit {
-	constructor(public store: TasksStore) {}
+	constructor(public store: TasksStore, private router: Router) {}
 
 	ngOnInit(): void {
 		this.store.fetchTasks();
+	}
+
+	createTask() {
+		this.router.navigate(["/tasks/create"]);
 	}
 }
