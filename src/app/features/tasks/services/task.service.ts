@@ -4,9 +4,7 @@ import { Observable } from "rxjs";
 import { environment } from "../../../../environments/environment";
 import { Task } from "../models/interfaces/task.interface";
 
-@Injectable({
-	providedIn: "root",
-})
+@Injectable()
 export class TaskService {
 	private apiUrl = `${environment.apiUrl}/task`;
 
@@ -14,5 +12,9 @@ export class TaskService {
 
 	getAll(): Observable<Task[]> {
 		return this.http.get<Task[]>(`${this.apiUrl}/find-all`);
+	}
+
+	create(task: Task): Observable<void> {
+		return this.http.post<void>(`${this.apiUrl}/create`, task);
 	}
 }

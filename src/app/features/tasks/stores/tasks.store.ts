@@ -11,4 +11,10 @@ export class TasksStore {
 	fetchTasks() {
 		this.taskService.getAll().subscribe(tasks => this.tasks.set(tasks));
 	}
+
+	createTask(task: Task) {
+		this.taskService.create(task).subscribe(() => {
+			this.fetchTasks();
+		});
+	}
 }
