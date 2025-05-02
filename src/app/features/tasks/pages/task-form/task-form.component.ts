@@ -29,6 +29,8 @@ export class TaskFormComponent implements OnInit {
 			this.taskForm.reset();
 			this.router.navigate(["/tasks"]);
 			this.toastr.success("Operação realizada com sucesso!", "Sucesso");
+		} else {
+			this.toastr.error("Preencha todos os campos obrigatórios!", "Erro");
 		}
 	}
 }
