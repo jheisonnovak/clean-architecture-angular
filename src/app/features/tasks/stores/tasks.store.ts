@@ -1,5 +1,6 @@
 import { Injectable, signal } from "@angular/core";
 import { tap } from "rxjs";
+import { TaskStatusEnum } from "../models/enums/task-status.enum";
 import { Task } from "../models/interfaces/task.interface";
 import { TaskService } from "../services/task.service";
 
@@ -19,5 +20,9 @@ export class TasksStore {
 
 	deleteTask(id: number) {
 		return this.taskService.deleteById(id).pipe(tap(() => this.fetchTasks()));
+	}
+
+	updateTaskStatus(id: number, status: TaskStatusEnum) {
+		return this.taskService.updateStatusById(id, status).pipe(tap(() => this.fetchTasks()));
 	}
 }
