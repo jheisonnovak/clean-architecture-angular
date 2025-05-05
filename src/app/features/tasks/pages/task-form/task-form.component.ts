@@ -25,10 +25,16 @@ export class TaskFormComponent implements OnInit {
 	onSubmit() {
 		if (this.taskForm.valid) {
 			const newTask: Task = this.taskForm.value;
-			this.store.createTask(newTask);
-			this.taskForm.reset();
-			this.router.navigate(["/tasks"]);
-			this.toastr.success("Operação realizada com sucesso!", "Sucesso");
+			this.store.createTask(newTask).subscribe({
+				next: response => {
+					this.taskForm.reset();
+					this.router.navigate(["/tasks"]);
+					this.toastr.success(response.message, "Sucesso");
+				},
+				error: error => {
+					this.toastr.error(error.message, "Erro");
+				},
+			});
 		} else {
 			this.toastr.error("Preencha todos os campos obrigatórios!", "Erro");
 		}
