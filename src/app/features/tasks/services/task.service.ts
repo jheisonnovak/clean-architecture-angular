@@ -21,7 +21,6 @@ export class TaskService {
 	}
 
 	updateStatusById(id: number, status: TaskStatusEnum): Observable<IResponse<unknown>> {
-		console.log(id);
 		return this.http.patch<IResponse<unknown>>(`${this.apiUrl}/update/${id}`, { status });
 	}
 

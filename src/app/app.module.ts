@@ -5,7 +5,7 @@ import { provideAnimationsAsync } from "@angular/platform-browser/animations/asy
 import { ToastrModule } from "ngx-toastr";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { HeaderComponent } from "./shared/header/header.component";
+import { HeaderComponent } from "./shared/components/header/header.component";
 
 @NgModule({
 	declarations: [AppComponent, HeaderComponent],
