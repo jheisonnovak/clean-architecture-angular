@@ -29,14 +29,14 @@ export class TaskFormComponent implements OnInit {
 				next: response => {
 					this.taskForm.reset();
 					this.router.navigate(["/tasks"]);
-					this.toastr.success(response.message, "Sucesso");
+					this.toastr.success(response.message);
 				},
 				error: error => {
-					this.toastr.error(error.error.message, "Erro");
+					this.toastr.error(error.error.message);
 				},
 			});
 		} else {
-			this.toastr.error("Preencha todos os campos obrigatórios!", "Erro");
+			this.toastr.error("Preencha todos os campos obrigatórios!");
 		}
 	}
 }
