@@ -32,7 +32,7 @@ export class TaskFormComponent implements OnInit {
 					this.toastr.success(response.message, "Sucesso");
 				},
 				error: error => {
-					this.toastr.error(error.message, "Erro");
+					this.toastr.error(error.error.message, "Erro");
 				},
 			});
 		} else {
