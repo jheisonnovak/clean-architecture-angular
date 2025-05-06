@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { environment } from "../../../../environments/environment";
 import { IResponse } from "../../../shared/interfaces/response.interface";
 import { TaskStatusEnum } from "../models/enums/task-status.enum";
+import { CreateTask } from "../models/interfaces/create-task.interface";
 import { Task } from "../models/interfaces/task.interface";
 
 @Injectable()
@@ -16,7 +17,7 @@ export class TaskService {
 		return this.http.get<Task[]>(`${this.apiUrl}/find-all`);
 	}
 
-	create(task: Task): Observable<IResponse<unknown>> {
+	create(task: CreateTask): Observable<IResponse<unknown>> {
 		return this.http.post<IResponse<unknown>>(`${this.apiUrl}/create`, task);
 	}
 

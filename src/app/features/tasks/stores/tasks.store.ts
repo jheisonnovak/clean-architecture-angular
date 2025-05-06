@@ -1,6 +1,7 @@
 import { Injectable, signal } from "@angular/core";
 import { tap } from "rxjs";
 import { TaskStatusEnum } from "../models/enums/task-status.enum";
+import { CreateTask } from "../models/interfaces/create-task.interface";
 import { Task } from "../models/interfaces/task.interface";
 import { TaskService } from "../services/task.service";
 
@@ -22,7 +23,7 @@ export class TasksStore {
 		});
 	}
 
-	createTask(task: Task) {
+	createTask(task: CreateTask) {
 		return this.taskService.create(task).pipe(tap(() => this.fetchTasks()));
 	}
 
