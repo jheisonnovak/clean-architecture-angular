@@ -6,7 +6,7 @@ import { RouterModule } from "@angular/router";
 import { ToastrModule } from "ngx-toastr";
 import { AppComponent } from "./app.component";
 import { routes } from "./app.routes";
-import { HeaderComponent } from "./shared/components/header/header.component";
+import { HeaderComponent } from "./presentation/layout/header/header.component";
 
 @NgModule({
 	declarations: [AppComponent, HeaderComponent],
