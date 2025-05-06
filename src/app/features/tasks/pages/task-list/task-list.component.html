@@ -9,37 +9,77 @@
 			<path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
 		</svg>
 	</button>
-	<div class="grid gap-4">
-		<div *ngFor="let task of store.tasks()" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-			<div class="flex items-center justify-between">
-				<h3 class="text-xl font-semibold text-gray-700">{{ task.title }}</h3>
-				<div class="flex items-center space-x-2">
-					<select
-						[value]="task.status"
-						(change)="updateTaskStatus(task.id, $any($event.target).value)"
-						class="px-3 py-1 text-sm rounded-md border"
-						[disabled]="task.status === 'DONE'"
-						[ngClass]="{
-							'bg-green-100 text-green-800': task.status === 'DONE',
-							'bg-yellow-100 text-yellow-800': task.status === 'DOING',
-							'bg-gray-100 text-gray-800': task.status === 'PENDING'
-						}"
+
+	<div class="grid grid-cols-3 gap-4">
+		<div class="bg-gray-100 p-4 rounded-lg">
+			<h2 class="text-xl font-bold mb-4">Pending</h2>
+			<div
+				cdkDropList
+				#pendingList="cdkDropList"
+				[cdkDropListData]="store.pendingTasks()"
+				[cdkDropListConnectedTo]="[doingList, doneList]"
+				(cdkDropListDropped)="drop($event)"
+				class="min-h-[200px] h-full"
+				id="PENDING"
+			>
+				<div *ngFor="let task of store.pendingTasks()" [id]="task.id" cdkDrag class="bg-white rounded-lg shadow-md p-6 mb-4 cursor-move">
+					<h3 class="text-xl font-semibold text-gray-700">{{ task.title }}</h3>
+					<p class="mt-3 text-gray-600">{{ task.description }}</p>
+					<button
+						(click)="deleteTask(task.id)"
+						class="mt-4 px-4 py-2 text-sm bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors cursor-pointer"
 					>
-						<option value="PENDING">PENDING</option>
-						<option value="DOING">DOING</option>
-						<option value="DONE">DONE</option>
-					</select>
+						Delete
+					</button>
 				</div>
 			</div>
-			<p class="mt-3 text-gray-600">{{ task.description }}</p>
+		</div>
 
-			<div class="mt-4 flex justify-end space-x-2">
-				<button
-					(click)="deleteTask(task.id)"
-					class="px-4 py-2 text-sm bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors cursor-pointer"
-				>
-					Delete
-				</button>
+		<div class="bg-yellow-50 p-4 rounded-lg">
+			<h2 class="text-xl font-bold mb-4">Doing</h2>
+			<div
+				cdkDropList
+				#doingList="cdkDropList"
+				[cdkDropListData]="store.doingTasks()"
+				[cdkDropListConnectedTo]="[pendingList, doneList]"
+				(cdkDropListDropped)="drop($event)"
+				class="min-h-[200px] h-full"
+				id="DOING"
+			>
+				<div *ngFor="let task of store.doingTasks()" cdkDrag class="bg-white rounded-lg shadow-md p-6 mb-4 cursor-move">
+					<h3 class="text-xl font-semibold text-gray-700">{{ task.title }}</h3>
+					<p class="mt-3 text-gray-600">{{ task.description }}</p>
+					<button
+						(click)="deleteTask(task.id)"
+						class="mt-4 px-4 py-2 text-sm bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors cursor-pointer"
+					>
+						Delete
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="bg-green-50 p-4 rounded-lg">
+			<h2 class="text-xl font-bold mb-4">Done</h2>
+			<div
+				cdkDropList
+				#doneList="cdkDropList"
+				[cdkDropListData]="store.doneTasks()"
+				[cdkDropListConnectedTo]="[pendingList, doingList]"
+				(cdkDropListDropped)="drop($event)"
+				class="min-h-[200px] h-full"
+				id="DONE"
+			>
+				<div *ngFor="let task of store.doneTasks()" cdkDrag class="bg-white rounded-lg shadow-md p-6 mb-4 cursor-move">
+					<h3 class="text-xl font-semibold text-gray-700">{{ task.title }}</h3>
+					<p class="mt-3 text-gray-600">{{ task.description }}</p>
+					<button
+						(click)="deleteTask(task.id)"
+						class="mt-4 px-4 py-2 text-sm bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors cursor-pointer"
+					>
+						Delete
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>

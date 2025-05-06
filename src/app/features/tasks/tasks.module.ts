@@ -1,3 +1,4 @@
+import { DragDropModule } from "@angular/cdk/drag-drop";
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
@@ -10,7 +11,7 @@ import { taskRoutes } from "./tasks.routes";
 
 @NgModule({
 	declarations: [TaskListComponent, TaskFormComponent],
-	imports: [CommonModule, ReactiveFormsModule, RouterModule.forChild(taskRoutes)],
+	imports: [CommonModule, ReactiveFormsModule, RouterModule.forChild(taskRoutes), DragDropModule],
 	providers: [TasksStore, TaskService],
 })
 export class TasksModule {}
