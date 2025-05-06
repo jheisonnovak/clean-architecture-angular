@@ -7,11 +7,19 @@ import { TaskService } from "../services/task.service";
 @Injectable()
 export class TasksStore {
 	tasks = signal<Task[]>([]);
+	pendingTasks = signal<Task[]>([]);
+	doingTasks = signal<Task[]>([]);
+	doneTasks = signal<Task[]>([]);
 
 	constructor(private taskService: TaskService) {}
 
 	fetchTasks() {
-		this.taskService.getAll().subscribe(tasks => this.tasks.set(tasks));
+		this.taskService.getAll().subscribe(tasks => {
+			this.tasks.set(tasks);
+			this.pendingTasks.set(tasks.filter(task => task.status === TaskStatusEnum.PENDING));
+			this.doingTasks.set(tasks.filter(task => task.status === TaskStatusEnum.DOING));
+			this.doneTasks.set(tasks.filter(task => task.status === TaskStatusEnum.DONE));
+		});
 	}
 
 	createTask(task: Task) {
