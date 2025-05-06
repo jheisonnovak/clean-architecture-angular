@@ -2,6 +2,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from "@angular/cdk/dr
 import { Component, OnInit } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
 import { TaskStatusEnum } from "../../models/enums/task-status.enum";
+import { CreateTask } from "../../models/interfaces/create-task.interface";
 import { TasksStore } from "../../stores/tasks.store";
 
 @Component({
@@ -11,10 +12,30 @@ import { TasksStore } from "../../stores/tasks.store";
 })
 export class TaskListComponent implements OnInit {
 	protected taskStatusEnum = TaskStatusEnum;
+	showModal = false;
 	constructor(public store: TasksStore, private toastr: ToastrService) {}
 
 	ngOnInit(): void {
 		this.store.fetchTasks();
+	}
+
+	openModal(): void {
+		this.showModal = true;
+	}
+
+	closeModal(): void {
+		this.showModal = false;
+	}
+
+	createTask(task: CreateTask) {
+		this.store.createTask(task).subscribe({
+			next: response => {
+				this.toastr.success(response.message);
+			},
+			error: error => {
+				this.toastr.error(error.error.message);
+			},
+		});
 	}
 
 	deleteTask(id: number) {
