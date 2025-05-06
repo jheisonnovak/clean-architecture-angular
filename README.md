@@ -1,12 +1,10 @@
-# Clean Architecture Angular Example
+# Clean Architecture Angular
 
 This repository provides an example of implementing **Clean Architecture** using [Angular](https://angular.io/).
 
 ## 🛠 Technologies
 
 -   **Angular 16+**
--   **NgRx Store**
--   **RxJS**
 
 ## 📁 Project Structure
 
@@ -35,19 +33,15 @@ The project follows a modular approach with a layered architecture, adhering to 
     │   │   └── common-components/
     │   ├── shared/
     │   │   └── ...
-    │   └── app.module.ts
     ├── environments/
-    │   ├── environment.ts
-    │   └── environment.prod.ts
     ├── assets/
     │   └── images/
-    └── index.html
 
 ### Key Concepts
 
 -   **Core**: Contains application-wide services, guards, and interceptors
 -   **Features**: Each feature module encapsulates specific domain functionality
--   **Presentation**: Handles layout and common UI components
+-   **Presentation**: Contains general UI elements and layout components
 -   **Shared**: Reusable components, directives, and pipes
 
 ## 🚀 Getting Started
@@ -72,13 +66,21 @@ cd clean-architecture-angular
 npm install
 ```
 
-3. Run the application:
+3. Copy the example environment files:
+
+```bash
+cp src/environments/environment.example.ts src/environments/environment.ts # linux/mac
+# or
+copy src\environments\environment.example.ts src\environments\environment.ts # windows
+```
+
+4. Run the application:
 
 ```bash
 npm start
 ```
 
-4. Access the application:
+5. Access the application:
    Open your browser and navigate to [http://localhost:4200](http://localhost:4200)
 
 ## 🔗 Backend Integration
@@ -89,7 +91,6 @@ This frontend application is designed to work with the backend available at:
 ## 📚 Learn More
 
 -   [Angular Documentation](https://angular.io/docs)
--   [NgRx Store Documentation](https://ngrx.io/)
 -   Clean Architecture - Robert C. Martin
 
 ## 🤝 Contributing
