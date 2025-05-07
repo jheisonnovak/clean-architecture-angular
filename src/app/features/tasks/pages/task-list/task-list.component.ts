@@ -55,9 +55,6 @@ export class TaskListComponent implements OnInit {
 		} else {
 			transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
 			this.store.updateTaskStatus(event.container.data[event.currentIndex].id, event.container.id as TaskStatusEnum).subscribe({
-				next: response => {
-					this.toastr.success(response.message, undefined, { timeOut: 1000 });
-				},
 				error: error => {
 					transferArrayItem(event.container.data, event.previousContainer.data, event.currentIndex, event.previousIndex);
 					this.toastr.error(error.error.message, undefined, { timeOut: 1500 });
