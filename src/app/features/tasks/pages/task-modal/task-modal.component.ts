@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from "@angular/animations";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
@@ -7,6 +8,20 @@ import { Task } from "../../models/interfaces/task.interface";
 	selector: "app-task-modal",
 	templateUrl: "./task-modal.component.html",
 	standalone: false,
+	animations: [
+		trigger("modalAnimation", [
+			state("void", style({ opacity: 0, transform: "scale(0.9)" })),
+			state("enter", style({ opacity: 1, transform: "scale(1)" })),
+			transition("void => enter", [animate("300ms ease-out")]),
+			transition("enter => void", [animate("200ms ease-in")]),
+		]),
+		trigger("backdropAnimation", [
+			state("void", style({ opacity: 0 })),
+			state("enter", style({ opacity: 1 })),
+			transition("void => enter", [animate("300ms ease-out")]),
+			transition("enter => void", [animate("200ms ease-in")]),
+		]),
+	],
 })
 export class TaskModalComponent implements OnInit {
 	taskForm!: FormGroup;
