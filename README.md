@@ -1,6 +1,6 @@
 # Clean Architecture Angular
 
-This repository provides an example of implementing **Clean Architecture** using [Angular](https://angular.io/).
+This repository provides an example of implementing **Clean Architecture** using [Angular](https://angular.dev/).
 
 ## 🛠 Technologies
 
@@ -91,7 +91,7 @@ This frontend application is designed to work with the backend available at:
 
 ## 📚 Learn More
 
--   [Angular Documentation](https://angular.io/docs)
+-   [Angular Documentation](https://angular.dev/overview)
 -   Clean Architecture - Robert C. Martin
 
 ## 🤝 Contributing
