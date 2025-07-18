@@ -14,18 +14,18 @@ export class TaskService {
 	constructor(private http: HttpClient) {}
 
 	getAll(): Observable<Task[]> {
-		return this.http.get<Task[]>(`${this.apiUrl}/find`);
+		return this.http.get<Task[]>(`${this.apiUrl}`);
 	}
 
 	create(task: CreateTask): Observable<IResponse<unknown>> {
-		return this.http.post<IResponse<unknown>>(`${this.apiUrl}/create`, task);
+		return this.http.post<IResponse<unknown>>(`${this.apiUrl}`, task);
 	}
 
 	updateStatusById(id: number, status: TaskStatusEnum): Observable<IResponse<unknown>> {
-		return this.http.patch<IResponse<unknown>>(`${this.apiUrl}/update/${id}`, { status });
+		return this.http.patch<IResponse<unknown>>(`${this.apiUrl}/${id}`, { status });
 	}
 
 	deleteById(id: number): Observable<IResponse<unknown>> {
-		return this.http.delete<IResponse<unknown>>(`${this.apiUrl}/delete/${id}`);
+		return this.http.delete<IResponse<unknown>>(`${this.apiUrl}/${id}`);
 	}
 }
