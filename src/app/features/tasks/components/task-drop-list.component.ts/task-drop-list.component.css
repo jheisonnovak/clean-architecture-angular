@@ -1,15 +1,3 @@
-@import "tailwindcss";
-
-/* .cdk-drag-preview {
-	box-sizing: border-box;
-	border-radius: 4px;
-} */
-@layer components {
-	.cdk-drag-preview {
-		@apply !shadow-md !bg-white !cursor-move;
-	}
-}
-
 .cdk-drag-placeholder {
 	opacity: 0.5;
 }

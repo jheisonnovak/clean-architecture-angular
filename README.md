@@ -4,7 +4,8 @@ This repository provides an example of implementing **Clean Architecture** using
 
 ## 🛠 Technologies
 
--   **Angular 16+**
+-   **Angular 20**
+-   **Tailwind v4**
 
 ## 📁 Project Structure
 
@@ -48,7 +49,7 @@ The project follows a modular approach with a layered architecture, adhering to 
 
 ### Prerequisites
 
--   **Node.js** (version 16 or higher)
+-   **Node.js** (version 20 or higher)
 -   **npm** or **yarn**
 
 ### Installation

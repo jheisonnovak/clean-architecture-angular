@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+@layer components {
+	.cdk-drag-preview {
+		@apply !shadow-md !bg-white !cursor-move;
+	}
+}
