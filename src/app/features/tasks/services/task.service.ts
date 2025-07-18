@@ -14,7 +14,7 @@ export class TaskService {
 	constructor(private http: HttpClient) {}
 
 	getAll(): Observable<Task[]> {
-		return this.http.get<Task[]>(`${this.apiUrl}/find-all`);
+		return this.http.get<Task[]>(`${this.apiUrl}/find`);
 	}
 
 	create(task: CreateTask): Observable<IResponse<unknown>> {
